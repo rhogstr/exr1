@@ -1,0 +1,35 @@
+practical exercise 1 - Rasmus Högström - rashgs-5@studen.ltu.se
+
+I used windows 10 and Anaconda3, cpu only, to do these tasks.
+
+To download and prepare the CIFAR-10 dataset I wrote:
+
+> python util/data/get_a_dataset.py --dataset CIFAR10 --output-folder mydatasets
+
+To run the image classification with default settings and seed 42, I wrote:
+
+> python template/RunMe.py --output-folder log --dataset-folder mydatasets/CIFAR10 --lr 0.1 --ignoregit --no-cuda --seed 42
+
+I didn't need to specify the model since it's CNN_basic by default and the optimizer is SGD. 
+It got a test accuracy of 58.7%
+
+To try the same model with the optimizer 'Adam' I wrote:
+
+> python template/RunMe.py --output-folder log --dataset-folder mydatasets/CIFAR10 --lr 0.1 --ignoregit --no-cuda --seed 42 --optimizer-name Adam
+
+It got a test accuracy of 31.5%
+
+When I created my own model I copied the CNN_basic.py file, named it CNN_basic.py and swapped nn.LeakyReLU() for nn.Tanh() and CNN_basic for CNN_basic_tanh througout the document and called it in conda as:
+
+> python template/RunMe.py --output-folder log --dataset-folder mydatasets/CIFAR10 --lr 0.1 --ignoregit --no-cuda --seed 42 --model-name CNN_basic_tanh
+
+It got a test accuracy of 52.5%
+
+To visualize the results using tensorboard I navigated to the output directory and wrote:
+
+> C:\Users\Rasmus\AppData\Roaming\SPB_Data\.conda\envs\deepd\log\CNN_basic_04\CIFAR10\model_name=CNN_basic_tanh\lr=0.1\no_cuda=True\seed=42\19-04-20-11h-52m-15s>tensorboard --logdir ./ --port 6006
+
+Then I opened the http://localhost:6006 and took a screenshot.
+
+A screenshot of the tensorboard results and the CNN_basic_tanh.py file is avalible at https://github.com/rhogstr/exr1
+
